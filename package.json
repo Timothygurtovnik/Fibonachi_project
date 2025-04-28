@@ -1,0 +1,17 @@
+
+{
+  "name": "01-hw-validator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "edward",
+  "license": "ISC",
+  "description": "validator",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
