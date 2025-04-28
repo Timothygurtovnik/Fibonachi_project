@@ -1,4 +1,4 @@
-import { validateEcmascriptText, validateDomainZone, validateEmail, getFibonacciSequence, getFibonacciSum } from './validate.js';
+import { validateEcmascriptText, validateDomainZone, validateEmail,FibonacciIterator } from './validate.js';
 
 describe('validateEcmascriptText', () => {
     test('should return true if ECMAScript is provided', () => {
@@ -54,16 +54,27 @@ describe('validateEmail', () => {
     });
 });
 
-describe('getFibonacciSequence', () => {
-    test('should return correct Fibonacci sequence', () => {
-        expect(getFibonacciSequence(5)).toEqual([0, 1, 1, 2, 3, 5]);
-        expect(getFibonacciSequence(6)).toEqual([0, 1, 1, 2, 3, 5, 8]);
+
+
+describe('FibonacciIterator', () => {
+    test('should return correct Fibonacci sequence for 8', () => {
+        const fibonacci = new FibonacciIterator(8);
+        expect(fibonacci.getSequence()).toEqual([0, 1, 1, 2, 3, 5, 8, 13]);
+    });
+
+    test('should return correct sum of Fibonacci sequence for 8', () => {
+        const fibonacci = new FibonacciIterator(8);
+        expect(fibonacci.getSum()).toBe(33);
+    });
+
+    test('should return correct Fibonacci sequence for 5', () => {
+        const fibonacci = new FibonacciIterator(5);
+        expect(fibonacci.getSequence()).toEqual([0, 1, 1, 2, 3]);
+    });
+
+    test('should return correct sum of Fibonacci sequence for 5', () => {
+        const fibonacci = new FibonacciIterator(5);
+        expect(fibonacci.getSum()).toBe(7);
     });
 });
 
-describe('getFibonacciSum', () => {
-    test('should return correct Fibonacci sum', () => {
-        expect(getFibonacciSum(5)).toBe(12);
-        expect(getFibonacciSum(6)).toBe(20);
-    });
-});

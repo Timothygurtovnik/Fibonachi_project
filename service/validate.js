@@ -40,18 +40,48 @@ export function validateEmail(str) {
     return emailPattern.test(str);
 }
 
-export function getFibonacciSequence(n) {
-    let sequence = [0, 1];
-
-    for (let i = 2; i <= n; i++) {
-        sequence.push(sequence[i - 1] + sequence[i - 2]);
+export class FibonacciIterator {
+    constructor(n) {
+        this.n = n;
+        this.current = 0;
+        this.nextValue = 1;
+        this.index = 0;
     }
 
-    return sequence;
+
+    next() {
+        if (this.index >= this.n) {
+            return { done: true };
+        }
+
+        const value = this.current;
+        const newNextValue = this.current + this.nextValue;
+        this.current = this.nextValue;
+        this.nextValue = newNextValue;
+        this.index++;
+
+        return { value, done: false };
+    }
+
+
+    getSequence() {
+        const sequence = [];
+        let result = this.next();
+        while (!result.done) {
+            sequence.push(result.value);
+            result = this.next();
+        }
+        return sequence;
+    }
+
+
+    getSum() {
+        const sequence = this.getSequence();
+        return sequence.reduce((sum, num) => sum + num, 0);
+    }
 }
 
 
-export function getFibonacciSum(n) {
-    const sequence = getFibonacciSequence(n);
-    return sequence.reduce((acc, val) => acc + val, 0);
-}
+const fibonacci = new FibonacciIterator(8);
+console.log('Fibonacci Sequence:', fibonacci.getSequence());
+console.log('Fibonacci Sum:', fibonacci.getSum());
